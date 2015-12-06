@@ -11,9 +11,9 @@
 @interface MJRefreshStateHeader()
 {
     /** 显示上一次刷新时间的label */
-    __unsafe_unretained UILabel *_lastUpdatedTimeLabel;
+    __weak UILabel *_lastUpdatedTimeLabel;
     /** 显示刷新状态的label */
-    __unsafe_unretained UILabel *_stateLabel;
+    __weak UILabel *_stateLabel;
 }
 /** 所有状态对应的文字 */
 @property (strong, nonatomic) NSMutableDictionary *stateTitles;

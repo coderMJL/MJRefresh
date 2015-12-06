@@ -18,13 +18,13 @@
 #pragma mark - 示例
 - (void)example31
 {
-    __unsafe_unretained UIWebView *webView = self.webView;
+    __weak UIWebView *webView = self.webView;
     webView.delegate = self;
     
-    __unsafe_unretained UIScrollView *scrollView = self.webView.scrollView;
+    __weak UIScrollView *scrollView = self.webView.scrollView;
     
     // 添加下拉刷新控件
-    scrollView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    scrollView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [webView reload];
     }];
     
@@ -34,7 +34,7 @@
 #pragma mark - webViewDelegate
 - (void)webViewDidFinishLoad:(nonnull UIWebView *)webView
 {
-    [self.webView.scrollView.mj_header endRefreshing];
+    [self.webView.scrollView.header endRefreshing];
 }
 
 #pragma mark - 其他
