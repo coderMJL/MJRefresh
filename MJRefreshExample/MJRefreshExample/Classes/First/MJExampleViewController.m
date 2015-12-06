@@ -62,26 +62,26 @@ static NSString *const MJExample30 = @"UIWebView";
 {
     [super viewDidLoad];
     
-    __unsafe_unretained UITableView *tableView = self.tableView;
+    __weak UITableView *tableView = self.tableView;
     
     // 下拉刷新
-    tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             // 结束刷新
-            [tableView.mj_header endRefreshing];
+            [tableView.header endRefreshing];
         });
     }];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
-    tableView.mj_header.automaticallyChangeAlpha = YES;
+    tableView.header.automaticallyChangeAlpha = YES;
     
     // 上拉刷新
-    tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             // 结束刷新
-            [tableView.mj_footer endRefreshing];
+            [tableView.footer endRefreshing];
         });
     }];
 }
